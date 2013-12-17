@@ -29,7 +29,7 @@ $etudiants = Array();
    
  
        
-   		echo "<tr> <td ><img  src='".$valeur->enclosure['url']."' width='40%' height='40%' />$valeur->title</td>";
+   		echo "<tr> <td ><img style='padding: 5px; height: 235' src='".$valeur->enclosure['url']."' width='40%' height='40%' />$valeur->title</td>";
    		
    	
    }

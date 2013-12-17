@@ -39,7 +39,38 @@ class EtudiantController extends AbstractActionController
         }
         return array('form' => $form);
     }
-   
+    public function editAction()
+    {
+    	$id = (int) $this->params()->fromRoute('id', 0);
+    	if (!$id) {
+    		return $this->redirect()->toRoute('etudiant', array(
+    				'action' => 'add'
+    		));
+    	}
+    	$etudiant = $this->getEtudiantTable()->getEtudiant($id);
+    
+    	$form  = new EtudiantForm();
+    	$form->bind($etudiant);
+    	$form->get('submit')->setAttribute('value', 'Edit');
+    
+    	$request = $this->getRequest();
+    	if ($request->isPost()) {
+    		$form->setInputFilter($etudiant->getInputFilter());
+    		$form->setData($request->getPost());
+    
+    		if ($form->isValid()) {
+    			$this->getEtudiantTable()->saveEtudiant($etudiant);
+    
+    			
+    			return $this->redirect()->toRoute('notes');
+    		}
+    	}
+    
+    	return array(
+    			'id' => $id,
+    			'form' => $form,
+    	);
+    }
   
 	public function getEtudiantTable()
     {

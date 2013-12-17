@@ -90,7 +90,7 @@ class Etudiant implements InputFilterAwareInterface
             		'name'     => 'note',
             		'required' => true,
             		'filters'  => array(
-            				array('name' => 'Int'),
+            				array('name' => 'float'),
             		),
             )));
             $this->inputFilter = $inputFilter;

@@ -1,19 +1,24 @@
 <?php
-// module/Test/view/test/test/add.phtml:
+// module/etudiant/view/etudiant/etudiant/add.phtml:
 
-$title = 'Add note';
+$title = 'add note';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
+
 <?php
 $form = $this->form;
-$form->setAttribute('action', $this->url('etudiant', array('action' => 'add')));
+$form->setAttribute('action', $this->url(
+    'etudiant',
+    array(
+        'action' => 'add',
+        'id'     => $this->id,
+    )
+));
 $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('nom'));
-echo $this->formRow($form->get('exercice'));
 echo $this->formRow($form->get('note'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();
